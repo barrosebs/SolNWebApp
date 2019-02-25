@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using SolNWebApp.Models;
 using SolNWebApp.Data;
+using SolNWebApp.Services;
 
 namespace SolNWebApp
 {
@@ -42,6 +43,8 @@ namespace SolNWebApp
                     builder.MigrationsAssembly("SolNWebApp")));
 
             services.AddScoped<SeedService>();
+            services.AddScoped<SituacaoService>();
+            services.AddScoped<AtletaService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -13,6 +13,7 @@ namespace SolNWebApp.Models
         public Status Status { get; set; }
         public DateTime Data { get; set; }
         public double Valor { get; set; }
+        public int AtletaId { get; set; }
         public Atleta Atleta { get; set; }
 
         public SituacaoDoAtleta()

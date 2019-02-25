@@ -1,4 +1,4 @@
-﻿@model SolNWebApp.Models.SituacaoDoAtleta
+﻿@model SolNWebApp.Models.ViewModels.AtletaFormViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -13,24 +13,28 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Situacao" class="control-label"></label>
-                <select asp-for="Situacao" class="form-control"></select>
-                <span asp-validation-for="Situacao" class="text-danger"></span>
+                <label asp-for="Situacao.Atleta.Nome" class="control-label"></label>
+                <select asp-for="Situacao.Atleta.Nome" asp-items="@(new SelectList(Model.Atletas, "Id","Nome" ))" class="form-control"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <select asp-for="Status" class="form-control"></select>
-                <span asp-validation-for="Status" class="text-danger"></span>
+                <label asp-for="Situacao.Situacao" class="control-label"></label>
+                <select asp-for="Situacao.Situacao" class="form-control"></select>
+                <span asp-validation-for="Situacao.Situacao" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Data" class="control-label"></label>
-                <input asp-for="Data" class="form-control" />
-                <span asp-validation-for="Data" class="text-danger"></span>
+                <label asp-for="Situacao.Status" class="control-label"></label>
+                <select asp-for="Situacao.Status" class="form-control"></select>
+                <span asp-validation-for="Situacao.Status" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Valor" class="control-label"></label>
-                <input asp-for="Valor" class="form-control" />
-                <span asp-validation-for="Valor" class="text-danger"></span>
+                <label asp-for="Situacao.Data" class="control-label"></label>
+                <input asp-for="Situacao.Data" class="form-control" />
+                <span asp-validation-for="Situacao.Data" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Situacao.Valor" class="control-label"></label>
+                <input asp-for="Situacao.Valor" class="form-control" />
+                <span asp-validation-for="Situacao.Valor" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

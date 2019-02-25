@@ -6,16 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SolNWebApp.Models;
+using SolNWebApp.Models.ViewModels;
+using SolNWebApp.Services;
 
 namespace SolNWebApp.Controllers
 {
     public class SituacaoDoAtletasController : Controller
     {
         private readonly SolNWebAppContext _context;
-
-        public SituacaoDoAtletasController(SolNWebAppContext context)
+        private readonly AtletaService _atletaService;
+        public SituacaoDoAtletasController(SolNWebAppContext context, AtletaService atletaService)
         {
             _context = context;
+            _atletaService = atletaService;
         }
 
         // GET: SituacaoDoAtletas
@@ -45,7 +48,9 @@ namespace SolNWebApp.Controllers
         // GET: SituacaoDoAtletas/Create
         public IActionResult Create()
         {
-            return View();
+            var atletas = _atletaService.FindAll();
+            var viewModel = new AtletaFormViewModel { Atletas = atletas };
+            return View(viewModel);
         }
 
         // POST: SituacaoDoAtletas/Create
