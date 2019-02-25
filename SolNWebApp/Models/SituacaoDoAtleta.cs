@@ -20,9 +20,9 @@ namespace SolNWebApp.Models
 
         }
 
-        public SituacaoDoAtleta(int id, Situacao situacao, Status status, DateTime data, double valor, Atleta atleta)
+        public SituacaoDoAtleta(Situacao situacao, Status status, DateTime data, double valor, Atleta atleta)
         {
-            Id = id;
+           
             Situacao = situacao;
             Status = status;
             Data = data;

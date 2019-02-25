@@ -10,7 +10,7 @@ using SolNWebApp.Models;
 namespace SolNWebApp.Migrations
 {
     [DbContext(typeof(SolNWebAppContext))]
-    [Migration("20190225172200_initial")]
+    [Migration("20190225183606_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,6 +32,8 @@ namespace SolNWebApp.Migrations
                     b.Property<DateTime>("DataNascimento");
 
                     b.Property<string>("Nome");
+
+                    b.Property<string>("NomeSocial");
 
                     b.Property<int>("Posicao");
 

@@ -15,6 +15,7 @@ namespace SolNWebApp.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Nome = table.Column<string>(nullable: true),
+                    NomeSocial = table.Column<string>(nullable: true),
                     Posicao = table.Column<int>(nullable: false),
                     DataNascimento = table.Column<DateTime>(nullable: false),
                     Telefone = table.Column<string>(nullable: true),

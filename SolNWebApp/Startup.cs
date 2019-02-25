@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using SolNWebApp.Models;
+using SolNWebApp.Data;
 
 namespace SolNWebApp
 {
@@ -39,14 +40,17 @@ namespace SolNWebApp
             services.AddDbContext<SolNWebAppContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("SolNWebAppContext"), builder =>
                     builder.MigrationsAssembly("SolNWebApp")));
+
+            services.AddScoped<SeedService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedService seedService)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                seedService.Seed();
             }
             else
             {

@@ -31,6 +31,8 @@ namespace SolNWebApp.Migrations
 
                     b.Property<string>("Nome");
 
+                    b.Property<string>("NomeSocial");
+
                     b.Property<int>("Posicao");
 
                     b.Property<string>("Telefone");

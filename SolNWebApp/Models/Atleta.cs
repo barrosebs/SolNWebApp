@@ -10,6 +10,7 @@ namespace SolNWebApp.Models
     {
         public int Id { get; set; }
         public string Nome { get; set; }
+        public string NomeSocial { get; set; }
         public Posicao Posicao { get; set; }
         public DateTime DataNascimento { get; set; }
         public string Telefone { get; set; }
@@ -22,10 +23,11 @@ namespace SolNWebApp.Models
 
         }
 
-        public Atleta(int id, string nome, Posicao posicao, DateTime dataNascimento, string telefone, DateTime dataCadastro)
+        public Atleta(string nome, string nomeSocial, Posicao posicao, DateTime dataNascimento, string telefone, DateTime dataCadastro)
         {
-            Id = id;
+            
             Nome = nome;
+            NomeSocial = nomeSocial;
             Posicao = posicao;
             DataNascimento = dataNascimento;
             Telefone = telefone;
