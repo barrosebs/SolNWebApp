@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SolNWebApp.Models;
+using SolNWebApp.Services.Exceptions;
 
 namespace SolNWebApp.Controllers
 {
@@ -138,15 +140,31 @@ namespace SolNWebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var atleta = await _context.Atleta.FindAsync(id);
-            _context.Atleta.Remove(atleta);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                var atleta = await _context.Atleta.FindAsync(id);
+                _context.Atleta.Remove(atleta);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }catch(IntegrityException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
         }
 
         private bool AtletaExists(int id)
         {
             return _context.Atleta.Any(e => e.Id == id);
+        }
+
+        public IActionResult Error(string message)
+        {
+            var viewModel = new ErrorViewModel
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+            return View(viewModel);
         }
     }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SolNWebApp</title>
+    <title>@ViewData["Title"] - SN Web App</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -32,9 +32,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark active" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item dropdown show">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true"><i class="fas fa-cash-register"></i> Cadastro</a>
-                            <div class="dropdown-menu show" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 37px, 0px);">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-cash-register"></i> Cadastro</a>
+                            <div class="dropdown-menu">
                                 <a class="dropdown-item" asp-area="" asp-controller="Atletas" asp-action="Index"><i class="fas fa-address-book"></i> Atletas</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" asp-area="" asp-controller="SituacaoDoAtletas" asp-action="Index"><i class="fas fa-swimmer"></i> Situação dos Atletas</a>

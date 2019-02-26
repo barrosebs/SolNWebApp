@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using SolNWebApp.Models;
 using SolNWebApp.Models.ViewModels;
 using SolNWebApp.Services;
+using SolNWebApp.Services.Exceptions;
 
 namespace SolNWebApp.Controllers
 {
@@ -24,7 +26,7 @@ namespace SolNWebApp.Controllers
         // GET: SituacaoDoAtletas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.SituacaoDoAtleta.ToListAsync());
+            return View(await _context.SituacaoDoAtleta.Include(obj => obj.Atleta).ToListAsync());
         }
 
         // GET: SituacaoDoAtletas/Details/5
@@ -32,14 +34,14 @@ namespace SolNWebApp.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id não fornecido" });
             }
 
-            var situacaoDoAtleta = await _context.SituacaoDoAtleta
+            var situacaoDoAtleta = await _context.SituacaoDoAtleta.Include(obj => obj.Atleta)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (situacaoDoAtleta == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id não encontrado" });
             }
 
             return View(situacaoDoAtleta);
@@ -74,13 +76,13 @@ namespace SolNWebApp.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id não fornecido" });
             }
 
             var situacaoDoAtleta = await _context.SituacaoDoAtleta.FindAsync(id);
             if (situacaoDoAtleta == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id não encontrado" });
             }
             return View(situacaoDoAtleta);
         }
@@ -94,7 +96,8 @@ namespace SolNWebApp.Controllers
         {
             if (id != situacaoDoAtleta.Id)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id não correspondem" });
+                //return NotFound();
             }
 
             if (ModelState.IsValid)
@@ -104,11 +107,11 @@ namespace SolNWebApp.Controllers
                     _context.Update(situacaoDoAtleta);
                     await _context.SaveChangesAsync();
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateConcurrencyException e)
                 {
                     if (!SituacaoDoAtletaExists(situacaoDoAtleta.Id))
                     {
-                        return NotFound();
+                        return RedirectToAction(nameof(Error), new { message = e.Message });
                     }
                     else
                     {
@@ -125,14 +128,14 @@ namespace SolNWebApp.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id não forcedido" });
             }
 
             var situacaoDoAtleta = await _context.SituacaoDoAtleta
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (situacaoDoAtleta == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id não encontrado" });
             }
 
             return View(situacaoDoAtleta);
@@ -152,6 +155,16 @@ namespace SolNWebApp.Controllers
         private bool SituacaoDoAtletaExists(int id)
         {
             return _context.SituacaoDoAtleta.Any(e => e.Id == id);
+        }
+
+        public IActionResult Error(string message)
+        {
+            var viewModel = new ErrorViewModel
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+        };
+            return View(viewModel);
         }
     }
 }

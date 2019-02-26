@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using SolNWebApp.Models;
 using SolNWebApp.Data;
 using SolNWebApp.Services;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace SolNWebApp
 {
@@ -50,6 +52,15 @@ namespace SolNWebApp
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedService seedService)
         {
+            var ptBR = new CultureInfo("pt-BR");
+            var localizationOptions = new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(ptBR),
+                SupportedCultures = new List<CultureInfo> { ptBR },
+                SupportedUICultures = new List<CultureInfo> { ptBR }
+            };
+            app.UseRequestLocalization(localizationOptions);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
