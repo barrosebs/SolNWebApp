@@ -30,12 +30,11 @@ namespace SolNWebApp.Models
 
         }
 
-        public SituacaoDoAtleta(Situacao situacao, Status status, DateTime data, double valor, Atleta atleta)
+        public SituacaoDoAtleta(Situacao situacao, Status status, DateTime? data, double valor, Atleta atleta)
         {
-           
             Situacao = situacao;
             Status = status;
-            Data = data;
+            Data = DateTime.Now;
             Valor = valor;
             Atleta = atleta;
         }

@@ -35,7 +35,7 @@ namespace SolNWebApp.Data
             Atleta a9 = new Atleta("Wanderley Dantas","Pirinho", Posicao.Jogador, new DateTime(1982,11,04), "71986254733", DateTime.Now);
             Atleta a10 = new Atleta("Valdenor Dantas","Denor", Posicao.Jogador, new DateTime(1970,05,17), "71985223815", DateTime.Now);
 
-            SituacaoDoAtleta sa1 = new SituacaoDoAtleta(Situacao.Ativo,Status.Apto,DateTime.Now,15.0, a1);
+            SituacaoDoAtleta sa1 = new SituacaoDoAtleta(Situacao.Ativo,Status.Apto,DateTime.Now,15.0,a1);
             SituacaoDoAtleta sa2 = new SituacaoDoAtleta(Situacao.Desligado,Status.Inapto,DateTime.Now,15.0, a7);
             SituacaoDoAtleta sa3 = new SituacaoDoAtleta(Situacao.Ativo,Status.Apto,DateTime.Now,15.0, a4);
             SituacaoDoAtleta sa4 = new SituacaoDoAtleta(Situacao.Ativo,Status.Apto,DateTime.Now,15.0, a6);

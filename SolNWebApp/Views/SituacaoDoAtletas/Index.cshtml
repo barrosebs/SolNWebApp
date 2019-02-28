@@ -5,55 +5,57 @@
 }
 
 <h1>Movimentação do Atleta</h1>
-<div class="row">
+<div class="row bg-light">
     <div class="col-md-6">
-        <form class="form-horizontal" asp-action="GroupingSearch">
-            <fieldset>
+        <form class="form-inline my-2 my-lg-0" asp-action="GroupingSearch">
+            <fieldset class="col-6">
                 <legend>Busca por Grupo</legend>
             </fieldset>
             <div class="form-group">
-                <label for="minDate" class="col-lg-4 control-label">Data Mínima</label>
+                <label for="minDate" class="col-lg-6 control-label" >Data Mínima</label>
                 <div class="col-lg-6">
-                    <input type="date" name="minDate" class="form-control" />
+                    <input type="date" name="minDate" class="form-control"  />
                 </div>
             </div>
             <div class="form-group">
-                <label for="mmaxDate" class="col-lg-4">Data Máxima</label>
+                <label for="maxDate" class="col-lg-6"  >Data Máxima</label>
                 <div class="col-lg-6">
                     <input type="date" name="maxDate" class="form-control" />
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-vertical col-lg-6">
                 <div class="col-lg-6">
-                    <button type="submit" class="btn btn-outline-info">Buscar</button>
+                    <button type="submit" class="btn btn-info">Buscar</button>
                 </div>
             </div>
         </form>
     </div>
     <div class="col-md-6">
-        <form class="form-vertical" asp-action="SimpleSearch">
-            <fieldset>
+        <form class="form-inline my-2 my-lg-0" asp-action="SimpleSearch">
+            <fieldset class="col-6">
                 <legend>Busca Simples</legend>
             </fieldset>
             <div class="form-group">
-                <label for="minDate" class="col-lg-4 control-label">Data Mínima</label>
+                <label for="minDate" class="col-lg-6 control-label">Data Mínima</label>
                 <div class="col-lg-6">
                     <input type="date" name="minDate" class="form-control" />
                 </div>
             </div>
             <div class="form-group">
-                <label for="mmaxDate" class="col-lg-4 control-label">Data Máxima</label>
+                <label for="maxDate" class="col-lg-6">Data Máxima</label>
                 <div class="col-lg-6">
                     <input type="date" name="maxDate" class="form-control" />
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-lg-10 col-lg-offset-2">
-                    <button type="submit" class="btn btn-outline-info">Buscar</button>
+            <div class="form-vertical col-lg-6">
+                <div class="col-lg-6">
+                    <button type="submit" class="btn btn-info">Buscar</button>
                 </div>
             </div>
         </form>
+        <br>
     </div>
+    
 </div>
 <div class="row d-xl-inline-block"></div>
 <p>

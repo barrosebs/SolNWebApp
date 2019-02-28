@@ -17,10 +17,14 @@ namespace SolNWebApp.Controllers
     {
         private readonly SolNWebAppContext _context;
         private readonly AtletaService _atletaService;
-        public SituacaoDoAtletasController(SolNWebAppContext context, AtletaService atletaService)
+        private readonly SituacaoService _SituacaoService;
+
+
+        public SituacaoDoAtletasController(SolNWebAppContext context, AtletaService atletaService, SituacaoService SituacaoService)
         {
             _context = context;
             _atletaService = atletaService;
+            _SituacaoService = SituacaoService;
         }
 
         // GET: SituacaoDoAtletas
@@ -60,7 +64,7 @@ namespace SolNWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Situacao,Status,Data,Valor")] SituacaoDoAtleta situacaoDoAtleta)
+        public async Task<IActionResult> Create([Bind("Id,AtletaId,Situacao,Status,Data,Valor")] SituacaoDoAtleta situacaoDoAtleta)
         {
             if (ModelState.IsValid)
             {
@@ -168,14 +172,26 @@ namespace SolNWebApp.Controllers
         }
 
         // GET: SituacaoDoAtletas
-        public async Task<IActionResult> SimpleSearch()
+        public async Task<IActionResult> SimpleSearch(DateTime? minDate, DateTime? maxDate)
         {
-            return View();
+            if (!minDate.HasValue)
+            {
+                minDate = new DateTime(DateTime.Now.Year,1,1);
+            }
+            if (!maxDate.HasValue)
+            {
+                maxDate = DateTime.Now;
+            }
+            ViewData["minDate"] = minDate.Value.ToString("yyyy-MM-dd");
+            ViewData["maxDate"] = maxDate.Value.ToString("yyyy-MM-dd");
+            var result = await _SituacaoService.FindByDateAsync(minDate, maxDate);
+            return View(result);
         }
 
         public async Task<IActionResult> GroupingSearch()
         {
-            return View();
+
+            return View(0);
         }
     }
 }

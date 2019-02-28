@@ -150,7 +150,7 @@ namespace SolNWebApp.Controllers
             {
                 return RedirectToAction(nameof(Error), new { message = e.Message });
             }
-            catch(DbUpdateException e)
+            catch(DbUpdateException)
             {
                 return RedirectToAction(nameof(Error), new { message = "Atenção: Esse atleta tem registro em outras tabelas." });
             }
