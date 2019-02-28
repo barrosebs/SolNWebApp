@@ -9,6 +9,7 @@ namespace SolNWebApp.Models
 {
     public class SituacaoDoAtleta
     {
+        [Key]
         public int Id { get; set; }
 
         [Display(Name = "Situação")]
@@ -43,16 +44,6 @@ namespace SolNWebApp.Models
         {
             return Atleta.Situacao.Where(a => a.Data >= inicial && a.Data <= final).Sum(a => a.Valor);
         }
-
-        public string ValidaStatus(string status)
-        {
-            if (status == "Apto")
-            {
-               status = "<i class='fas fa-thumbs-up'></i>";
-
-            }else
-                status = "<i class='fas fa-thumbs-down'></i>;";
-            return status;
-        }
+        
     }
 }

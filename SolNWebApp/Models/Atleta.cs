@@ -1,9 +1,11 @@
-﻿using SolNWebApp.Models.Enum;
+﻿using System.Web;
+using SolNWebApp.Models.Enum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace SolNWebApp.Models
 {
@@ -18,7 +20,6 @@ namespace SolNWebApp.Models
 
         [Display(Name = "Nome Social")]
         public string NomeSocial { get; set; }
-
 
         [Display(Name = "Posição")]
         [Required(ErrorMessage = "Campo {0} é obrigatório!")]
@@ -64,7 +65,6 @@ namespace SolNWebApp.Models
         {
             Situacao.Remove(situacao);
         }
-
 
     }
 }

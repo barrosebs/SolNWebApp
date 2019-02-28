@@ -15,12 +15,23 @@
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="Situacao" class="control-label"></label>
-                <select asp-for="Situacao" class="form-control"></select>
+                <select asp-for="Situacao" class="form-control" required>
+                    <option value="--Selecione--" disabled selected> --Selecione--</option>
+                    <option value="0"> Ativo</option>
+                    <option value="1"> Desligado</option>
+                    <option value="2"> DM</option>
+                    <option value="3"> Suspenso</option>
+                    <option value="4"> Viagem</option>
+                </select>
                 <span asp-validation-for="Situacao" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
-                <select asp-for="Status" class="form-control"></select>
+                <select asp-for="Status" class="form-control" required disabled>
+                    <option value="--Selecione--" disabled selected> --Selecione--</option>
+                    <option value="0"> Apto</option>
+                    <option value="1"> Inapto</option>
+                </select>
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -34,14 +45,14 @@
                 <span asp-validation-for="Valor" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Gravar" class="btn btn-primary" />
+                <input type="submit" value="Gravar" class="btn btn-outline-success" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index" class="btn btn-info">Voltar</a>
+    <a asp-action="Index" class="btn btn-outline-primary">Voltar para lista</a>
 </div>
 
 @section Scripts {
