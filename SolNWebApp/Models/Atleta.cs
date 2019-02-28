@@ -66,5 +66,10 @@ namespace SolNWebApp.Models
             Situacao.Remove(situacao);
         }
 
+        public double TotalAtleta(DateTime inicial, DateTime final)
+        {
+            return Situacao.Where(a => a.Data >= inicial && a.Data <= final).Sum(a => a.Valor);
+        }
+
     }
 }

@@ -188,10 +188,20 @@ namespace SolNWebApp.Controllers
             return View(result);
         }
 
-        public async Task<IActionResult> GroupingSearch()
+        public async Task<IActionResult> GroupingSearch(DateTime? minDate, DateTime? maxDate)
         {
-
-            return View(0);
+            if (!minDate.HasValue)
+            {
+                minDate = new DateTime(DateTime.Now.Year, 1, 1);
+            }
+            if (!maxDate.HasValue)
+            {
+                maxDate = DateTime.Now;
+            }
+            ViewData["minDate"] = minDate.Value.ToString("yyyy-MM-dd");
+            ViewData["maxDate"] = maxDate.Value.ToString("yyyy-MM-dd");
+            var result = await _SituacaoService.FindByDateGroupingAsync(minDate, maxDate);
+            return View(result);
         }
     }
 }

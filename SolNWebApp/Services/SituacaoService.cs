@@ -33,5 +33,25 @@ namespace SolNWebApp.Services
                 .OrderByDescending(x => x.Data)
                 .ToListAsync();//result.ToList(); retorna uma consulta em lista 
         }
+
+
+        public async Task<List<IGrouping<Atleta,SituacaoDoAtleta>>> FindByDateGroupingAsync(DateTime? minDate, DateTime? maxDate)
+        {
+            var result = from obj in _context.SituacaoDoAtleta select obj;
+            if (minDate.HasValue)
+            {
+                result = result.Where(x => x.Data >= minDate.Value);
+            }
+            if (maxDate.HasValue)
+            {
+                result = result.Where(x => x.Data <= maxDate.Value);
+            }
+
+            return await result
+                .Include(x => x.Atleta)//realizando join com a tabela atleta
+                .OrderByDescending(x => x.Data)
+                .GroupBy(x => x.Atleta)
+                .ToListAsync();//result.ToList(); retorna uma consulta em lista 
+        }
     }
 }
