@@ -166,5 +166,16 @@ namespace SolNWebApp.Controllers
         };
             return View(viewModel);
         }
+
+        // GET: SituacaoDoAtletas
+        public async Task<IActionResult> SimpleSearch()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> GroupingSearch()
+        {
+            return View();
+        }
     }
 }

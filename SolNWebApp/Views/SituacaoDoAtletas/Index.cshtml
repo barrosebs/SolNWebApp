@@ -5,7 +5,57 @@
 }
 
 <h1>Movimentação do Atleta</h1>
-
+<div class="row">
+    <div class="col-md-6">
+        <form class="form-horizontal" asp-action="GroupingSearch">
+            <fieldset>
+                <legend>Busca por Grupo</legend>
+            </fieldset>
+            <div class="form-group">
+                <label for="minDate" class="col-lg-4 control-label">Data Mínima</label>
+                <div class="col-lg-6">
+                    <input type="date" name="minDate" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mmaxDate" class="col-lg-4">Data Máxima</label>
+                <div class="col-lg-6">
+                    <input type="date" name="maxDate" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-6">
+                    <button type="submit" class="btn btn-outline-info">Buscar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <form class="form-vertical" asp-action="SimpleSearch">
+            <fieldset>
+                <legend>Busca Simples</legend>
+            </fieldset>
+            <div class="form-group">
+                <label for="minDate" class="col-lg-4 control-label">Data Mínima</label>
+                <div class="col-lg-6">
+                    <input type="date" name="minDate" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mmaxDate" class="col-lg-4 control-label">Data Máxima</label>
+                <div class="col-lg-6">
+                    <input type="date" name="maxDate" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <button type="submit" class="btn btn-outline-info">Buscar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row d-xl-inline-block"></div>
 <p>
     <a asp-action="Create" class="btn btn-dark">Nova Situação</a>
 </p>
@@ -29,29 +79,29 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model)
-{
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Atleta.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Situacao)
-            </td>
-            <td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Atleta.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Situacao)
+                </td>
+                <td>
 
-                @Html.DisplayFor(modelItem => item.Status)
+                    @Html.DisplayFor(modelItem => item.Status)
 
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Valor)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a>
-                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary">Detalhes</a>
-                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Excluir</a>
-            </td>
-        </tr>
-}
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor)
+                </td>
+                <td>
+                    <!--<a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a> verificar a possibilidade de edição com senha master-->
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary">Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Excluir</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
