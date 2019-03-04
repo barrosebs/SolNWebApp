@@ -1,11 +1,9 @@
-﻿using System.Web;
-using SolNWebApp.Models.Enum;
+﻿using SolNWebApp.Models.Enum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Globalization;
 
 namespace SolNWebApp.Models
 {
@@ -34,9 +32,9 @@ namespace SolNWebApp.Models
         [DisplayFormat(DataFormatString ="{0:#######-####}")]
         public string Telefone { get; set; }
 
-        
-        [DataType(DataType.DateTime)]
-        public DateTime DataCadastro { get; set; }
+        [Display(Name = "Data de Cadastro")]
+        [DataType(DataType.Date)]
+        public DateTime DataCadastro { get; set; } = DateTime.Now;
         public ICollection<SituacaoDoAtleta> Situacao { get; set; } = new List<SituacaoDoAtleta>();
 
 
@@ -45,7 +43,7 @@ namespace SolNWebApp.Models
 
         }
 
-        public Atleta(string nome, string nomeSocial, Posicao posicao, DateTime dataNascimento, string telefone, DateTime dataCadastro)
+        public Atleta(string nome, string nomeSocial, Posicao posicao, DateTime dataNascimento, string telefone)
         {
             
             Nome = nome;
@@ -53,7 +51,7 @@ namespace SolNWebApp.Models
             Posicao = posicao;
             DataNascimento = dataNascimento;
             Telefone = telefone;
-            DataCadastro = dataCadastro;
+            DataCadastro = DateTime.Now;
         }
 
         public void AddSituacao(SituacaoDoAtleta situacao)
@@ -66,9 +64,66 @@ namespace SolNWebApp.Models
             Situacao.Remove(situacao);
         }
 
-        public double TotalAtleta(DateTime inicial, DateTime final)
+        public int TotalAtleta(DateTime inicial, DateTime final)
         {
-            return Situacao.Where(a => a.Data >= inicial && a.Data <= final).Sum(a => a.Valor);
+            return Situacao.Where(a => a.Data >= inicial && a.Data <= final).Count(a => Convert.ToBoolean(this.Id));
+        }
+
+
+        public string ConvertToBirthDay(DateTime birthDay)
+        {
+                        
+            TimeSpan duration = DateTime.Now.Subtract(birthDay.Date);
+
+            if (duration.TotalHours < 24.0)
+            {
+                return duration.TotalHours.ToString("F2", CultureInfo.InvariantCulture) + " horas";
+            }
+            else
+            {
+                return duration.TotalDays.ToString("F2", CultureInfo.InvariantCulture) + " Dias";
+            }
+        }
+
+        /// <summary>
+        /// Change the day of the week to pt-BR
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns>week to pt-BR</returns>
+        public string MudarIdiomaDeData(DateTime data)
+        {
+            string mothDate = data.DayOfWeek.ToString();
+            string mothString = "";
+            switch (mothDate)
+            {
+                case "Monday": 
+                     mothString = "Segunda-feira";
+                    break;
+                case "Tuesday":
+                    mothString = "Terça-feira";
+                    break;
+                case "Wednesday":
+                    mothString = "Quarta-feira";
+                    break;
+                case "Thursday":
+                    mothString = "Quinta-feira";
+                    break;
+                case "Friday":
+                    mothString = "Sexta-feira";
+                    break;
+                case "Saturday":
+                    mothString = "Sábado";
+                    break;
+                case "Sunday":
+                    mothString = "Domingo";
+                    break;
+
+                default:
+                    mothString = "Dia inválido";
+                    break;
+                    
+            }
+            return mothString;
         }
 
     }

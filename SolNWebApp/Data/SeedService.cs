@@ -24,16 +24,16 @@ namespace SolNWebApp.Data
                 return; //DB has been seeded
             }
 
-            Atleta a1 = new Atleta("Eduardo Barros","Neno", Posicao.Goleiro, new DateTime(1977,02,27),"71993521182",DateTime.Now);
-            Atleta a2 = new Atleta("Mário Mendes", "Sebastian", Posicao.Jogador, new DateTime(1981,05,28), "71991967256", DateTime.Now);
-            Atleta a3 = new Atleta("Galdino","Kal" , Posicao.Jogador, new DateTime(1974,10,30), "71987761487", DateTime.Now);
-            Atleta a4 = new Atleta("Marcos","Nato", Posicao.Goleiro, new DateTime(1985,04,20), "71991148155", DateTime.Now);
-            Atleta a5 = new Atleta("Marcelo Porcino","Negão", Posicao.Jogador, new DateTime(1978,11,12), "71987749095", DateTime.Now);
-            Atleta a6 = new Atleta("Gineto","Sr.", Posicao.Jogador, new DateTime(1955,10,19), "71987143882", DateTime.Now);
-            Atleta a7 = new Atleta("Edson Dias","Marezia", Posicao.Jogador, new DateTime(1967,10,02), "7188105420", DateTime.Now);
-            Atleta a8 = new Atleta("Luis Pinto","Bola no Mato", Posicao.Jogador, new DateTime(1979,11,21), "71986086623", DateTime.Now);
-            Atleta a9 = new Atleta("Wanderley Dantas","Pirinho", Posicao.Jogador, new DateTime(1982,11,04), "71986254733", DateTime.Now);
-            Atleta a10 = new Atleta("Valdenor Dantas","Denor", Posicao.Jogador, new DateTime(1970,05,17), "71985223815", DateTime.Now);
+            Atleta a1 = new Atleta("Eduardo Barros","Neno", Posicao.Goleiro, new DateTime(1977,02,27),"71993521182");
+            Atleta a2 = new Atleta("Mário Mendes", "Sebastian", Posicao.Jogador, new DateTime(1981,05,28), "71991967256");
+            Atleta a3 = new Atleta("Galdino","Kal" , Posicao.Jogador, new DateTime(1974,10,30), "71987761487");
+            Atleta a4 = new Atleta("Marcos","Nato", Posicao.Goleiro, new DateTime(1985,04,20), "71991148155");
+            Atleta a5 = new Atleta("Marcelo Porcino","Negão", Posicao.Jogador, new DateTime(1978,11,12), "71987749095");
+            Atleta a6 = new Atleta("Gineto","Sr.", Posicao.Jogador, new DateTime(1955,10,19), "71987143882");
+            Atleta a7 = new Atleta("Edson Dias","Marezia", Posicao.Jogador, new DateTime(1967,10,02), "7188105420");
+            Atleta a8 = new Atleta("Luis Pinto","Bola no Mato", Posicao.Jogador, new DateTime(1979,11,21), "71986086623");
+            Atleta a9 = new Atleta("Wanderley Dantas","Pirinho", Posicao.Jogador, new DateTime(1982,11,04), "71986254733");
+            Atleta a10 = new Atleta("Valdenor Dantas","Denor", Posicao.Jogador, new DateTime(1970,05,17), "71985223815");
 
             SituacaoDoAtleta sa1 = new SituacaoDoAtleta(Situacao.Ativo,Status.Apto,DateTime.Now,15.0,a1);
             SituacaoDoAtleta sa2 = new SituacaoDoAtleta(Situacao.Desligado,Status.Inapto,DateTime.Now,15.0, a7);

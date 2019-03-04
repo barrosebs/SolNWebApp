@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<SolNWebApp.Models.SituacaoDoAtleta>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Movimentação do Atleta";
 }
 
-<h1>Movimentação do Atleta</h1>
+<h1><i class="fas fa-people-carry"> </i> @ViewData["Title"]</h1>
 <div class="row bg-light">
     <div class="col-md-6">
         <form class="form-inline my-2 my-lg-0" asp-action="GroupingSearch">
@@ -23,9 +23,9 @@
                     <input type="date" name="maxDate" class="form-control" />
                 </div>
             </div>
-            <div class="form-vertical col-lg-6">
+            <div class="form-vertical col-lg-8">
                 <div class="col-lg-6">
-                    <button type="submit" class="btn btn-info">Buscar</button>
+                    <button type="submit" class="btn btn-info"><i class="fas fa-search"></i> Buscar</button>
                 </div>
             </div>
         </form>
@@ -47,9 +47,9 @@
                     <input type="date" name="maxDate" class="form-control" />
                 </div>
             </div>
-            <div class="form-vertical col-lg-6">
+            <div class="form-vertical col-lg-8">
                 <div class="col-lg-6">
-                    <button type="submit" class="btn btn-info">Buscar</button>
+                    <button type="submit" class="btn btn-info"><i class="fas fa-search"></i> Buscar</button>
                 </div>
             </div>
         </form>
@@ -59,7 +59,7 @@
 </div>
 <div class="row d-xl-inline-block"></div>
 <p>
-    <a asp-action="Create" class="btn btn-dark">Nova Situação</a>
+    <a asp-action="Create" class="btn btn-dark"><i class="fas fa-hdd"></i> Nova Situação</a>
 </p>
 <table class="table">
     <thead>
@@ -100,8 +100,8 @@
                 </td>
                 <td>
                     <!--<a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a> verificar a possibilidade de edição com senha master-->
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary">Detalhes</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Excluir</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary"><i class="fas fa-exclamation-circle"></i>Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fas fa-trash-alt"></i>Excluir</a>
                 </td>
             </tr>
         }

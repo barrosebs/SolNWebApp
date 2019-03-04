@@ -1,13 +1,12 @@
 ﻿@model SolNWebApp.Models.Atleta
-
+@using SolNWebApp.Models.Enum
 @{
     ViewData["Title"] = "Novo Atleta";
-
+    ViewData["DataAtual"] = DateTime.Now;
 }
 
 <h1>@ViewData["Title"]</h1>
 
-<h4>Novo</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -19,11 +18,16 @@
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="NomeSocial" class="control-label"></label>
+                <input asp-for="NomeSocial" class="form-control" />
+                <span asp-validation-for="NomeSocial" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Posicao" class="control-label"></label>
-                <select asp-for="Posicao" class="form-control" required>
-                    <option value="--Selecione--" disabled selected> --Selecione--</option>
-                    <option value="0"> Goleiro</option>
-                    <option value="1"> Jogador</option>
+                <select asp-for="Posicao" class="form-control">
+                    <option value="-1" disabled selected>--Selecione--</option>
+                    <option value="0">@Enum.GetName(typeof(Posicao), Posicao.Goleiro)</option>
+                    <option value="1">@Enum.GetName(typeof(Posicao), Posicao.Jogador)</option>
                 </select>
                 <span asp-validation-for="Posicao" class="text-danger"></span>
             </div>
@@ -35,22 +39,18 @@
             <div class="form-group">
                 <label asp-for="Telefone" class="control-label"></label>
                 <input asp-for="Telefone" class="form-control" />
+
                 <span asp-validation-for="Telefone" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DataCadastro" class="control-label"></label>
-                <input asp-for="DataCadastro" class="form-control" />
-                <span asp-validation-for="DataCadastro" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Gravar" class="btn btn-outline-success" />
+                <input type="submit" value="Salvar" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index" class="btn btn-outline-primary">Voltar para lista</a>
+    <a asp-action="Index" class="btn btn-primary">Voltar</a>
 </div>
 
 @section Scripts {

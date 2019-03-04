@@ -39,10 +39,10 @@ namespace SolNWebApp.Models
             Atleta = atleta;
         }
 
-        public double TotalSituacao(DateTime inicial, DateTime final)
+        public double TotalAtleta(DateTime inicial, DateTime final)
         {
             return Atleta.Situacao.Where(a => a.Data >= inicial && a.Data <= final).Sum(a => a.Valor);
         }
-        
+
     }
 }

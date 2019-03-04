@@ -1,0 +1,77 @@
+﻿@model IEnumerable<SolNWebApp.Models.Atleta>
+@{
+    string ThisMonthLong = DateTime.Now.ToString("MMMM");
+    string ThisBirthDay = DateTime.Now.ToString("dd/MMMM/yyyy");
+    ViewData["Title"] = "Aniversariantes do mês";
+    ViewData["SubTitle"] = ThisMonthLong + " de " + DateTime.Now.Year;
+
+
+
+}
+
+<h1>@ViewData["Title"]</h1>
+<h5>@ViewData["SubTitle"]</h5>
+
+
+<div class="panel-title panel-primary">
+    <div class="alert alert-dismissible alert-success">
+        <h5 class="panel-title">Total de atletas aniversariando:  @Model.Count(obj => Convert.ToBoolean(obj.Id))</h5>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr class="sucess">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </th>
+
+                    <th>
+                        Dia
+
+                    </th>
+                    <th>
+                        Dia da Semana
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Posicao)
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        <span>  @Html.DisplayFor(modelItem => item.Nome) - </span> <span>@Html.DisplayFor(modelItem => item.NomeSocial)</span>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataNascimento.Day)
+                    </td>
+                    <td>
+                        @item.MudarIdiomaDeData(item.DataNascimento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Posicao)
+
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="alert alert-dismissible alert-warning" property="article:eduardo">
+        <button type="button" class="close" data-dismiss="alert" >@ViewData["ClassHeader"]</button>
+        <h4 class="alert-heading">@ViewData["TitleMessage"]</h4>
+        <p class="mb-0">@ViewData["Message"]</p>
+    </div>
+    <br />
+    <a asp-action="Index" class="btn btn-outline-primary">Voltar para lista</a>
+
+</div>

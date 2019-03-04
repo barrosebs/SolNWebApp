@@ -15,7 +15,7 @@ namespace SolNWebApp.Services
         {
             _context = context;
         }
-
+        
         public async Task<List<SituacaoDoAtleta>> FindByDateAsync(DateTime? minDate, DateTime? maxDate)
         {
             var result = from obj in _context.SituacaoDoAtleta select obj;
@@ -34,8 +34,7 @@ namespace SolNWebApp.Services
                 .ToListAsync();//result.ToList(); retorna uma consulta em lista 
         }
 
-
-        public async Task<List<IGrouping<Atleta,SituacaoDoAtleta>>> FindByDateGroupingAsync(DateTime? minDate, DateTime? maxDate)
+        public async Task<List<IGrouping<Atleta, SituacaoDoAtleta>>> FindByDateGroupingAsync(DateTime? minDate, DateTime? maxDate)
         {
             var result = from obj in _context.SituacaoDoAtleta select obj;
             if (minDate.HasValue)
@@ -53,5 +52,7 @@ namespace SolNWebApp.Services
                 .GroupBy(x => x.Atleta)
                 .ToListAsync();//result.ToList(); retorna uma consulta em lista 
         }
+
+
     }
 }

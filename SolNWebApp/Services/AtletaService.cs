@@ -3,6 +3,7 @@ using SolNWebApp.Models;
 using SolNWebApp.Services.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,6 +16,7 @@ namespace SolNWebApp.Services
         public AtletaService(SolNWebAppContext context)
         {
             _context = context;
+
         }
 
         public List<Atleta> FindAll()
@@ -35,6 +37,18 @@ namespace SolNWebApp.Services
 
                 throw new IntegrityException(e.Message);
             }
+        }
+
+        public async Task<List<Atleta>> FindByBirthdayAsync(int minDate)
+        {
+
+            var result = from obj in _context.Atleta select obj;
+
+                result = result.Where(x => x.DataNascimento.Month == minDate);
+            
+            return await result
+                .OrderBy(x => x.DataNascimento.Day)
+                .ToListAsync();//result.ToList(); retorna uma consulta em lista  
         }
     }
 }

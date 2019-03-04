@@ -1,23 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
+
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SolNWebApp.Models;
+using SolNWebApp.Models.ViewModels;
+using SolNWebApp.Services;
 using SolNWebApp.Services.Exceptions;
-
 namespace SolNWebApp.Controllers
 {
     public class AtletasController : Controller
     {
         private readonly SolNWebAppContext _context;
+        private readonly AtletaService _atletaService;
 
-        public AtletasController(SolNWebAppContext context)
+        public AtletasController(SolNWebAppContext context, AtletaService atletaService)
         {
             _context = context;
+            _atletaService = atletaService;
         }
 
         // GET: Atletas
@@ -55,10 +57,11 @@ namespace SolNWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Posicao,DataNascimento,Telefone,DataCadastro")] Atleta atleta)
+        public async Task<IActionResult> Create([Bind("Id,Nome,NomeSocial,Posicao,DataNascimento,Telefone, DataCadastro")] Atleta atleta)
         {
             if (ModelState.IsValid)
             {
+                
                 _context.Add(atleta);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -87,7 +90,7 @@ namespace SolNWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Posicao,DataNascimento,Telefone,DataCadastro")] Atleta atleta)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,NomeSocial,Posicao,DataNascimento,Telefone,DataCadastro")] Atleta atleta)
         {
             if (id != atleta.Id)
             {
@@ -146,14 +149,17 @@ namespace SolNWebApp.Controllers
                 _context.Atleta.Remove(atleta);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }catch(IntegrityException e)
+            }
+            catch (IntegrityException e)
             {
                 return RedirectToAction(nameof(Error), new { message = e.Message });
             }
-            catch(DbUpdateException)
+            catch (DbUpdateException)
             {
-                return RedirectToAction(nameof(Error), new { message = "Atenção: Esse atleta tem registro em outras tabelas." });
+                return RedirectToAction(nameof(Error), new { message = "Atenção: Esse atleta não pode ser deletado. Ele tem registro em outras tabelas." });
             }
+
+
         }
 
         private bool AtletaExists(int id)
@@ -170,5 +176,21 @@ namespace SolNWebApp.Controllers
             };
             return View(viewModel);
         }
+        public async Task<IActionResult> SearchBirthday()
+        {
+
+            int minDate = DateTime.Now.Month;
+
+            var result = await _atletaService.FindByBirthdayAsync(minDate);
+            if (result.Count == 0)
+            {
+                ViewData["ClassHeader"] = "x";
+                ViewData["TitleMessage"] = "Atenção!";
+                ViewData["Message"] = "Ohhhh! Esse mês não temos aniversariantes, que pena!";
+
+            }
+            return View(result);
+        }
+
     }
 }
