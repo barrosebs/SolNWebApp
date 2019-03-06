@@ -1,0 +1,70 @@
+﻿@model SolNWebApp.Models.Lancamento
+@using SolNWebApp.Models.Enum
+@{
+    ViewData["Title"] = "Editar Lançamento";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>Lançamento</h4>
+<hr />
+<div class="row">
+    <div>
+        <form asp-action="Edit" >
+            <div class="form-group row">
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Vencimento" class="control-label"></label>
+                        <input asp-for="Vencimento" class="form-control" />
+                        <span asp-validation-for="Vencimento" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Detalhes" class="control-label"></label>
+                        <input asp-for="Detalhes" class="form-control" />
+                        <span asp-validation-for="Detalhes" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Valor" class="control-label"></label>
+                        <input asp-for="Valor" class="form-control" />
+                        <span asp-validation-for="Valor" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Status" class="control-label"></label>
+                        <select asp-for="Status" class="form-control">
+                            <option value="-1" disabled selected>--Selecione o Status--</option>
+                            <option value="0">@Enum.GetName(typeof(StatusLancamento), StatusLancamento.Crédito)</option>
+                            <option value="1">@Enum.GetName(typeof(StatusLancamento), StatusLancamento.Débito)</option>
+                        </select>
+                        <span asp-validation-for="Status" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Atleta" class="control-label"></label>
+                        <select asp-for="AtletaId" class="form-control" asp-items="ViewBag.AtletaId" disabled></select>
+                        <span asp-validation-for="AtletaId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ControleLancamentoId" class="control-label"></label>
+                        <select asp-for="ControleLancamento.Controle" class="form-control" asp-items="ViewBag.ControleLancamentoId"></select>
+                        <span asp-validation-for="ControleLancamentoId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

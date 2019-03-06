@@ -12,5 +12,9 @@ namespace SolNWebApp.Models
         public DbSet<SituacaoDoAtleta> SituacaoDoAtleta { get; set; }
 
         public DbSet<Atleta> Atleta { get; set; }
+
+        public DbSet<ControleLancamento> ControleLancamento { get; set; }
+
+        public DbSet<Lancamento> Lancamento { get; set; }
     }
 }

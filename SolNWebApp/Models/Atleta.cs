@@ -35,10 +35,12 @@ namespace SolNWebApp.Models
         [Display(Name = "Data de Cadastro")]
         [DataType(DataType.Date)]
         public DateTime DataCadastro { get; set; } = DateTime.Now;
+
         public ICollection<SituacaoDoAtleta> Situacao { get; set; } = new List<SituacaoDoAtleta>();
 
+        public ICollection<Lancamento> Lancamento { get; set; } = new List<Lancamento>();
 
-       public Atleta()
+        public Atleta()
         {
 
         }
@@ -54,6 +56,8 @@ namespace SolNWebApp.Models
             DataCadastro = DateTime.Now;
         }
 
+
+        #region Add & Remove obj
         public void AddSituacao(SituacaoDoAtleta situacao)
         {
             Situacao.Add(situacao);
@@ -63,6 +67,19 @@ namespace SolNWebApp.Models
         {
             Situacao.Remove(situacao);
         }
+
+        public void AddLancamento(Lancamento lancamento)
+        {
+            Lancamento.Add(lancamento);
+        }
+
+        public void RemoveLancamento(Lancamento lancamento)
+        {
+            Lancamento.Remove(lancamento);
+        }
+
+        #endregion
+
 
         public int TotalAtleta(DateTime inicial, DateTime final)
         {

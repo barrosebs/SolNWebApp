@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SolNWebApp.Models;
-using SolNWebApp.Models.ViewModels;
 using SolNWebApp.Services;
 using SolNWebApp.Services.Exceptions;
 namespace SolNWebApp.Controllers

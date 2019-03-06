@@ -1,5 +1,3 @@
-using System;
-
 namespace SolNWebApp.Models
 {
     public class ErrorViewModel

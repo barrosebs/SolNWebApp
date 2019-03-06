@@ -23,7 +23,9 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SolNWebApp</a>
+                <div class="col-md-2">
+                    <a class="navbar-brand text-uppercase" asp-area="" asp-controller="Home" asp-action="Index" >Sol Nascente </a><p class="text-lg-center text-warning">WebApp</p>
+                </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -39,14 +41,15 @@
                                 <a class="dropdown-item" asp-area="" asp-controller="Atletas" asp-action="Index"><i class="fas fa-address-book"></i> Atletas</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" asp-area="" asp-controller="SituacaoDoAtletas" asp-action="Index"><i class="fas fa-swimmer"></i> Situação dos Atletas</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-area="" asp-controller="ControleLancamentoes" asp-action="Index"><i class="fas fa-ad"></i> Controles</a>
+
                             </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-donate"></i> Lançamentos</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" asp-area="" asp-controller="#" asp-action="Index"><i class="fa fa-hand-holding-usd"></i> Recebimentos</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" asp-area="" asp-controller="#" asp-action="Index"><i class="fa fa-dolly"></i> Pagamentos</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Lancamentoes" asp-action="Index"><i class="fa fa-hand-holding-usd"></i> Extrato de Lançamentos</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -72,12 +75,11 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
+    <footer class="border-top footer text-muted bg-warning">
+        <div class="container text-black-50">
             &copy; 2019 - Sistema de Gestão Financeira Sport Club Sol Nascente - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
             <<<>>> <img src="~/imege/logo_nova_2.jpg" alt="EB Developed - 71 9 9352 1182" title="EB Developed - 71 9 9352 1182" width="50px"/> - Patrocinadores:
         </div>
-        <div></div>
     </footer>
 
     <environment include="Development">

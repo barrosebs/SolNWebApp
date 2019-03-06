@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace SolNWebApp.Services
 {
-    public class AtletaService
+    public class LancamentoService
     {
         private readonly SolNWebAppContext _context;
 
-        public AtletaService(SolNWebAppContext context)
+        public LancamentoService(SolNWebAppContext context)
         {
             _context = context;
 
         }
 
-        public List<Atleta> FindAll()
+        public List<Lancamento> FindAll()
         {
-            return _context.Atleta.OrderBy(x => x.Nome).ToList();
+            return _context.Lancamento.OrderBy(x => x.Id).ToList();
         }
 
         public async Task RemoAsync(int id)
@@ -37,16 +37,8 @@ namespace SolNWebApp.Services
             }
         }
 
-        public async Task<List<Atleta>> FindByBirthdayAsync(int minDate)
-        {
+        
 
-            var result = from obj in _context.Atleta select obj;
-
-                result = result.Where(x => x.DataNascimento.Month == minDate);
-            
-            return await result
-                .OrderBy(x => x.DataNascimento.Day)
-                .ToListAsync();//result.ToList(); retorna uma consulta em lista  
-        }
     }
 }
+

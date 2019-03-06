@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +11,6 @@ using SolNWebApp.Data;
 using SolNWebApp.Services;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
-using System.Threading;
 
 namespace SolNWebApp
 {
@@ -48,6 +43,9 @@ namespace SolNWebApp
             services.AddScoped<SeedService>();
             services.AddScoped<SituacaoService>();
             services.AddScoped<AtletaService>();
+            services.AddScoped<LancamentoService>();
+            services.AddScoped<ControleService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
