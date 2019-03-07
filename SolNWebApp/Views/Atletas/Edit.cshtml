@@ -25,12 +25,20 @@
                 <span asp-validation-for="NomeSocial" class="text-danger"></span>
             </div>
             <div class="form-group">
+
                 <label asp-for="Posicao" class="control-label"></label>
                 <select asp-for="Posicao" class="form-control">
                     <option value="0">@Enum.GetName(typeof(Posicao), Posicao.Goleiro)</option>
                     <option value="1">@Enum.GetName(typeof(Posicao), Posicao.Jogador)</option>
                 </select>
                 <span asp-validation-for="Posicao" class="text-danger"></span>
+
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-switch">
+                    <input asp-for="MembroComissao" type="checkbox" class="custom-control-input" id="MembroComissao">
+                    <label asp-for="MembroComissao" class="custom-control-label" for="MembroComissao"></label>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="DataNascimento" class="control-label"></label>
@@ -50,7 +58,7 @@
                 <input type="submit" value="Gravar" class="btn btn-success" />
             </div>
             <div>
-                <a asp-action="Index" class="btn btn-primary">Voltar</a>
+                <a asp-action="Index" class="btn btn-primary"><i class="fas fa-arrow-circle-left"></i> Voltar</a>
             </div>
         </form>
     </div>

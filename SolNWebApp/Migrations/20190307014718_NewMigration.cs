@@ -17,6 +17,7 @@ namespace SolNWebApp.Migrations
                     Nome = table.Column<string>(maxLength: 60, nullable: false),
                     NomeSocial = table.Column<string>(nullable: true),
                     Posicao = table.Column<int>(nullable: false),
+                    MembroComissao = table.Column<bool>(nullable: false),
                     DataNascimento = table.Column<DateTime>(nullable: false),
                     Telefone = table.Column<string>(nullable: false),
                     DataCadastro = table.Column<DateTime>(nullable: false)

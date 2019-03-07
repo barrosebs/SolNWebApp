@@ -32,7 +32,6 @@ namespace SolNWebApp.Services
             }
             catch (DbUpdateException e)
             {
-
                 throw new IntegrityException(e.Message);
             }
         }

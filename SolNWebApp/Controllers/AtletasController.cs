@@ -56,7 +56,7 @@ namespace SolNWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,NomeSocial,Posicao,DataNascimento,Telefone, DataCadastro")] Atleta atleta)
+        public async Task<IActionResult> Create([Bind("Id,Nome,NomeSocial,Posicao,MembroComissao,DataNascimento,Telefone, DataCadastro")] Atleta atleta)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +89,7 @@ namespace SolNWebApp.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,NomeSocial,Posicao,DataNascimento,Telefone,DataCadastro")] Atleta atleta)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,NomeSocial,Posicao,MembroComissao,DataNascimento,Telefone,DataCadastro")] Atleta atleta)
         {
             if (id != atleta.Id)
             {

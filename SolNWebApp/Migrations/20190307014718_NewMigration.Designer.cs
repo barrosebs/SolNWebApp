@@ -10,7 +10,7 @@ using SolNWebApp.Models;
 namespace SolNWebApp.Migrations
 {
     [DbContext(typeof(SolNWebAppContext))]
-    [Migration("20190306032328_NewMigration")]
+    [Migration("20190307014718_NewMigration")]
     partial class NewMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,6 +30,8 @@ namespace SolNWebApp.Migrations
                     b.Property<DateTime>("DataCadastro");
 
                     b.Property<DateTime>("DataNascimento");
+
+                    b.Property<bool>("MembroComissao");
 
                     b.Property<string>("Nome")
                         .IsRequired()

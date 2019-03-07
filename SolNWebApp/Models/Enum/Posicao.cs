@@ -3,6 +3,6 @@
     public enum Posicao : int
     {
         Goleiro = 0,
-        Jogador = 1
+        Jogador = 1,
     }
 }

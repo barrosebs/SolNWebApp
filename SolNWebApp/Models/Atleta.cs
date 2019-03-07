@@ -23,6 +23,9 @@ namespace SolNWebApp.Models
         [Required(ErrorMessage = "Campo {0} é obrigatório!")]
         public Posicao Posicao { get; set; }
 
+        [Display(Name = "Membro da Comissão")]
+        public bool MembroComissao { get; set; }
+
         [Display(Name = "Data de Nascimento")]
         [Required(ErrorMessage = "{0} é obrigatório!")]
         [DataType(DataType.Date)]
@@ -45,12 +48,13 @@ namespace SolNWebApp.Models
 
         }
 
-        public Atleta(string nome, string nomeSocial, Posicao posicao, DateTime dataNascimento, string telefone)
+        public Atleta(string nome, string nomeSocial, Posicao posicao, bool membroComissao, DateTime dataNascimento, string telefone)
         {
             
             Nome = nome;
             NomeSocial = nomeSocial;
             Posicao = posicao;
+            MembroComissao = membroComissao;
             DataNascimento = dataNascimento;
             Telefone = telefone;
             DataCadastro = DateTime.Now;

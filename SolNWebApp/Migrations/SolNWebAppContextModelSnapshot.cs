@@ -29,6 +29,8 @@ namespace SolNWebApp.Migrations
 
                     b.Property<DateTime>("DataNascimento");
 
+                    b.Property<bool>("MembroComissao");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(60);

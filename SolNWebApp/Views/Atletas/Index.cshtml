@@ -46,7 +46,20 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Nome)
+                @if (item.Nome == "Mário Mendes")
+                {
+                    <span class="badge badge-success " title="Presidente da Comissão"> @Html.DisplayFor(modelItem => item.Nome) <i class="fa fa-eye"></i></span>
+
+                }
+                else if (item.MembroComissao == true)
+                {
+                    <span class="badge badge-warning" title="Membro da Comissão"> @Html.DisplayFor(modelItem => item.Nome) <i class="fa fa-eye"></i></span>
+
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.Nome)
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NomeSocial)
@@ -55,9 +68,11 @@
                 @Html.DisplayFor(modelItem => item.Posicao)
             </td>
             <td>
+
                 @Html.DisplayFor(modelItem => item.Telefone)
+                
+
             </td>
-            
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary"><i class="fas fa-user-edit"></i>Editar</a>
                 <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary"><i class="fas fa-exclamation-circle"></i>Detalhes</a>

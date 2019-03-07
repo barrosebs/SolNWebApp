@@ -1,12 +1,12 @@
 ﻿@model SolNWebApp.Models.ControleLancamento
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Controle Financeiro";
 }
 
-<h1>Create</h1>
+<h1>@ViewData["Title"]</h1>
 
-<h4>ControleLancamento</h4>
+<h4>Controle de Lancamento</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -25,7 +25,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="btn btn-primary"><i class="fas fa-arrow-circle-left"></i> Voltar</a>
 </div>
 
 @section Scripts {
