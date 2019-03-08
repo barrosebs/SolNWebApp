@@ -26,7 +26,10 @@ namespace SolNWebApp.Controllers
         // GET: Lancamentoes
         public async Task<IActionResult> Index()
         {
-            var solNWebAppContext = _context.Lancamento.Include(l => l.Atleta).Include(l => l.ControleLancamento);
+            var solNWebAppContext = _context.Lancamento
+                .Include(l => l.Atleta)
+                .Include(l => l.ControleLancamento)
+                .OrderBy(x => x.Atleta);
             return View(await solNWebAppContext.ToListAsync());
         }
 

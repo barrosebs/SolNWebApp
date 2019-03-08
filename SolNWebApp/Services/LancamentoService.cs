@@ -19,7 +19,9 @@ namespace SolNWebApp.Services
 
         public List<Lancamento> FindAll()
         {
-            return _context.Lancamento.OrderBy(x => x.Id).ToList();
+            return _context.Lancamento
+                .Include(x => x.Atleta)
+                .OrderBy(x => x.Id).ToList();
         }
 
         public async Task RemoAsync(int id)

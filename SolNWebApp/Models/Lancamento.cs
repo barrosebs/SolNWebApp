@@ -24,7 +24,7 @@ namespace SolNWebApp.Models
         public StatusLancamento Status { get; set; }
 
         [Display(Name = "Data de Cadastro")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime Data { get; set; } = DateTime.Now;
 
         public int AtletaId { get; set; }
