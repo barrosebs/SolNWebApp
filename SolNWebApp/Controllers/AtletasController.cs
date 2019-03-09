@@ -144,10 +144,19 @@ namespace SolNWebApp.Controllers
         {
             try
             {
-                var atleta = await _context.Atleta.FindAsync(id);
-                _context.Atleta.Remove(atleta);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                Lancamento lancamento = new Lancamento();
+
+                if (LancamentoExistsAtleta(id))
+                {
+                    return RedirectToAction(nameof(Error), new { message = "ERRO: Esse atleta não pode ser deletado. Ele tem registro(s) na tabela de Lançamento!" });
+                }
+                else
+                {
+                    var atleta = await _context.Atleta.FindAsync(id);
+                    _context.Atleta.Remove(atleta);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
             }
             catch (IntegrityException e)
             {
@@ -155,7 +164,7 @@ namespace SolNWebApp.Controllers
             }
             catch (DbUpdateException)
             {
-                return RedirectToAction(nameof(Error), new { message = "Atenção: Esse atleta não pode ser deletado. Ele tem registro em outras tabelas." });
+                return RedirectToAction(nameof(Error), new { message = "ERRO: Esse atleta não pode ser deletado. Ele tem registro em outras tabelas." });
             }
 
 
@@ -164,6 +173,10 @@ namespace SolNWebApp.Controllers
         private bool AtletaExists(int id)
         {
             return _context.Atleta.Any(e => e.Id == id);
+        }
+        private bool LancamentoExistsAtleta(int id)
+        {
+            return _context.Lancamento.Any(e => e.AtletaId == id);
         }
 
         public IActionResult Error(string message)

@@ -10,7 +10,7 @@ using SolNWebApp.Models;
 namespace SolNWebApp.Migrations
 {
     [DbContext(typeof(SolNWebAppContext))]
-    [Migration("20190307014718_NewMigration")]
+    [Migration("20190309011511_NewMigration")]
     partial class NewMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
